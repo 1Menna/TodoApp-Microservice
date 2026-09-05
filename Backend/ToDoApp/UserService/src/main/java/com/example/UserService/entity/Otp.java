@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Setter
 @Getter
 @Entity
@@ -15,12 +17,18 @@ public class Otp {
     int id;
 
     @Column(name = "otp")
-    String otp;
+    String otpCode;
 
     @Column(name = "expiration_time")
-    String expirationTime;
+    Date expirationTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     User user;
+
+    public Otp(String otp, Date expirationTime, User user) {
+        this.otpCode = otp;
+        this.expirationTime = expirationTime;
+        this.user = user;
+    }
 }
