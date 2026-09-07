@@ -32,7 +32,7 @@ public class JwtService {
     }
 
     // resolve token
-    String resolveToken(HttpServletRequest request){
+    public String resolveToken(HttpServletRequest request){
         String authHeader = request.getHeader("Authorization");
         if(authHeader !=null && authHeader.startsWith("bearer")){
             return authHeader.substring(7);
@@ -41,7 +41,7 @@ public class JwtService {
     }
 
     // resolve claims
-    Claims resolveClaims(HttpServletRequest request){
+    public Claims resolveClaims(HttpServletRequest request){
         try{
             String accessToken = resolveToken(request);
             if(accessToken != null){
@@ -70,7 +70,7 @@ public class JwtService {
         }
     }
 
-    boolean isValidToken(String token, UserDetails user){
+    public boolean isValidToken(String token, UserDetails user){
         // we make this comparison only for that line
         // as when we call jwtParser.parse here he first check signature of token then return claims
         // so reason for that comparison is to check signature & notExpired
