@@ -60,6 +60,19 @@ public class AuthService {
      }
      //======================================================================================
 
+     LoginResponse activate (String username, String otpCode){
+         // get otp code from auth header and validate it
+          otpService.activateUser(username,otpCode);
+
+         // create and send token in response
+         User user = userRepository.findUserByEmail(username);
+         Map<String,Object> claims = new HashMap<>();
+
+         String token = jwtService.createToken(user,claims);
+
+         return new LoginResponse(username, token);
+     }
+
 
 
 
