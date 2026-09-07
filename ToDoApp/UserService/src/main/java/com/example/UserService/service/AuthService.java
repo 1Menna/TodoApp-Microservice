@@ -3,6 +3,8 @@ package com.example.UserService.service;
 import com.example.UserService.entity.User;
 import com.example.UserService.model.LoginRequest;
 import com.example.UserService.model.LoginResponse;
+import com.example.UserService.model.RegisterRequest;
+import com.example.UserService.model.RegisterResponse;
 import com.example.UserService.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,9 +17,6 @@ import java.util.Map;
 
 public class AuthService {
     @Autowired
-    OtpService otpService;
-
-    @Autowired
     AuthenticationManager authenticationManager;
 
     @Autowired
@@ -25,6 +24,9 @@ public class AuthService {
 
     @Autowired
     JwtService jwtService;
+
+    @Autowired
+    OtpService otpService;
 
     LoginResponse login(LoginRequest loginRequest){
         // validate that it authenticated user
@@ -39,6 +41,25 @@ public class AuthService {
         return new LoginResponse(user.getEmail(), token);
 
     }
+    //======================================================================================
+
+     RegisterResponse register(RegisterRequest registerRequest){
+        // create User object and save it in DB with enabled = false
+        User user = User.builder()
+                .role(registerRequest.getRole())
+                .email(registerRequest.getEmail())
+                .Password(registerRequest.getPassword())
+                .enabled(false)
+                .build();
+
+        // send otp code to user's email
+        otpService.createOTPAndSendIt(user);
+
+        return new RegisterResponse(registerRequest.getEmail(), "User registered successfully. OTP has been sent to your email.");
+
+     }
+     //======================================================================================
+
 
 
 

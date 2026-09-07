@@ -2,6 +2,7 @@ package com.example.UserService.entity;
 
 import com.example.UserService.entity.enums.Role;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,6 +14,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
+@Builder
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
