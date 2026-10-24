@@ -11,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,6 +36,9 @@ public class AuthService {
     @Autowired
     UserDetailsServiceImpl userDetailsService;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     //======= UnAuthorized EndPoints===================================================================
     //=================================================================================================
     public LoginResponse login(LoginRequest loginRequest){
@@ -56,7 +60,7 @@ public class AuthService {
         User user = User.builder()
                 .role(registerRequest.getRole())
                 .email(registerRequest.getEmail())
-                .Password(registerRequest.getPassword())
+                .Password(passwordEncoder.encode(registerRequest.getPassword()))
                 .enabled(false)
                 .build();
         userRepository.save(user);
