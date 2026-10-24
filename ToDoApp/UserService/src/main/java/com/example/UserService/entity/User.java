@@ -2,16 +2,15 @@ package com.example.UserService.entity;
 
 import com.example.UserService.entity.enums.Role;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
 
-
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
 @Entity

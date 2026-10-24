@@ -2,7 +2,11 @@ package com.example.UserService.entity;
 
 import com.example.UserService.entity.enums.TokenType;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="jwt")
 public class Jwt {
