@@ -26,7 +26,7 @@ public class OtpService {
     void createOTPAndSendIt(User user){
 //        String otpCode = String.format("%06d",new SecureRandom().nextInt(1000000));
         String otpCode = "123456";
-        int validateOtp = 60*1000; // 60 sec
+        int validateOtp = 5*60*1000; // 60 sec
         Otp otp = new Otp(otpCode,new Date(System.currentTimeMillis()+validateOtp),user);
         otpRepository.save(otp);
 
