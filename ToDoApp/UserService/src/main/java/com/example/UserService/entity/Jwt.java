@@ -2,12 +2,14 @@ package com.example.UserService.entity;
 
 import com.example.UserService.entity.enums.TokenType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Setter
+@Getter
+@Builder
 @Table(name="jwt")
 public class Jwt {
     @Id

@@ -30,7 +30,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // check if there is token in header or not
         String authHeader = request.getHeader("Authorization");
-        if(authHeader == null || !authHeader.startsWith("bearer")){
+        if(authHeader == null || !authHeader.startsWith("Bearer")){
             filterChain.doFilter(request,response);
             return;
         }
