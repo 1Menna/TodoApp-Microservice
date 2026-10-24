@@ -1,8 +1,11 @@
 package com.example.UserService.service;
 
 import com.example.UserService.auth.SecurityConfig;
+import com.example.UserService.entity.Jwt;
 import com.example.UserService.entity.User;
+import com.example.UserService.entity.enums.TokenType;
 import com.example.UserService.model.*;
+import com.example.UserService.repository.JwtRepository;
 import com.example.UserService.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +31,9 @@ public class AuthService {
     UserRepository userRepository;
 
     @Autowired
+    JwtRepository jwtRepository;
+
+    @Autowired
     JwtService jwtService;
 
     @Autowired
@@ -50,6 +56,8 @@ public class AuthService {
         Map<String,Object> claims = new HashMap<>();
 
         String token = jwtService.createToken(user,claims);
+        Jwt jwtToken = Jwt.builder().tokenType(TokenType.BEARER).token(token).user(user).build();
+        jwtRepository.save(jwtToken);
 
         return new LoginResponse(user.getEmail(), token);
 
@@ -87,6 +95,8 @@ public class AuthService {
          Map<String,Object> claims = new HashMap<>();
 
          String token = jwtService.createToken(user,claims);
+        Jwt jwtToken = Jwt.builder().tokenType(TokenType.BEARER).token(token).user(user).build();
+        jwtRepository.save(jwtToken);
 
          return new LoginResponse(username, token);
      }
