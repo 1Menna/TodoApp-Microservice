@@ -2,17 +2,19 @@ package com.example.UserService.service;
 
 import com.example.UserService.entity.User;
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.Map;
 
 // create token, extract claims, validate token
 @Service
 public class JwtService {
-    private final String secret_key = "ASDFGHJKLQW";
+    private final SecretKey secret_key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     private final JwtParser jwtParser;
     private final long tokenAccessTime = 15*60*1000;
 
