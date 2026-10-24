@@ -67,7 +67,7 @@ public class JwtService {
     boolean isTokenExpired(String token){
         try {
             Date expire =jwtParser.parseSignedClaims(token).getPayload().getExpiration();
-            if(expire.before(new Date(System.currentTimeMillis()))){
+            if(expire.after(new Date(System.currentTimeMillis()))){
                 return false;
             }
             return true;
