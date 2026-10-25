@@ -35,6 +35,12 @@ public class User implements UserDetails {
     @Column(name="role")
     Role role;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Jwt> tokens;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Otp> OtpCodes;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(role);
