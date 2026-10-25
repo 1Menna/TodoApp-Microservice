@@ -29,6 +29,19 @@ Client → User Service (login, register, password reset, user management)
 
 ## API Endpoints
 
+### User Service
+
+| Method | Endpoint | Body | Header | Description |
+|---|---|---|---|---|
+| `POST` | `/register` | User | -- |Register a new user, sends activation OTP via email |
+| `POST` | `/regenerateOtp?email=` | -- | -- | Resend a new OTP |
+| `POST` | `/activate?username=` | -- | OTP | Activate account using OTP |
+| `POST` | `/login` | username, password | -- | Authenticate user, returns a JWT |
+| `POST` | `/forgetPassword?username=` | -- | -- | Trigger password reset OTP |
+| `POST` | `/changePassword` | User | JwtToken | Reset password using OTP |
+| `POST` | `/checkToken` | -- | JwtToken | Validate a JWT (used internally by Todo Service) |
+
+
 ### Todo Service
 *(all routes require a valid JWT — validated internally against the User Service)*
 
@@ -38,20 +51,7 @@ Client → User Service (login, register, password reset, user management)
 | `PUT` | `/update/{id}` | Update a todo item by id |
 | `DELETE` | `/delete/{id}` | Delete a todo item by id |
 | `GET` | `/search/{id}` | Search for a todo item by id |
-
-### User Service
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/login` | Authenticate user, returns a JWT |
-| `POST` | `/register` | Register a new user, sends activation OTP via email |
-| `POST` | `/activate?username=` | Activate account using OTP |
-| `POST` | `/checkToken` | Validate a JWT (used internally by Todo Service) |
-| `POST` | `/forgetPassword` | Trigger password reset OTP |
-| `POST` | `/changePassword` | Reset password using OTP |
-| `POST` | `/regenerateOtp?email=` | Resend a new OTP |
-| `PUT` | `/update` | Update user details |
-| `DELETE` | `/delete` | Delete user account |
+ 
 
 ## Tech Stack
 
