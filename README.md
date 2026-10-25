@@ -38,7 +38,7 @@ Client → User Service (login, register, password reset, user management)
 | `POST` | `/activate?username=` | -- | OTP | Activate account using OTP |
 | `POST` | `/login` | username, password | -- | Authenticate user, returns a JWT |
 | `POST` | `/forgetPassword?username=` | -- | -- | Trigger password reset OTP |
-| `POST` | `/changePassword` | User | JwtToken | Reset password using OTP |
+| `PUT` | `/changePassword` | User | JwtToken | Reset password using OTP |
 | `POST` | `/checkToken` | -- | JwtToken | Validate a JWT (used internally by Todo Service) |
 
 
