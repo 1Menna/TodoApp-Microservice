@@ -42,9 +42,9 @@ public class AuthController {
     //======= Authorized EndPoints===================================================================
     //================================================================================================
 
-    @RequestMapping("/changePassword")
-    public ResponseEntity<String> changePassword(@RequestBody RegisterRequest registerRequest){
-        return ResponseEntity.ok(authService.changePassword(registerRequest));
+    @PutMapping("/changePassword")
+    public ResponseEntity<String> changePassword(@RequestBody LoginRequest loginRequest){
+        return ResponseEntity.ok(authService.changePassword(loginRequest));
     }
 
     @RequestMapping("/checkToken")

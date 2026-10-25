@@ -111,9 +111,9 @@ public class AuthService {
     //======= Authorized EndPoints===================================================================
     //================================================================================================
 
-    public String changePassword(RegisterRequest registerRequest){
-        User user = userRepository.findUserByEmail(registerRequest.getEmail());
-        user.setPassword(registerRequest.getPassword());
+    public String changePassword(LoginRequest loginRequest){
+        User user = userRepository.findUserByEmail(loginRequest.getEmail());
+        user.setPassword(loginRequest.getPassword());
         userRepository.save(user);
 
         return "password changed successfully";
