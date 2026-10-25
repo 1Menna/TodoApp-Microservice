@@ -42,7 +42,7 @@ public class AuthController {
     //======= Authorized EndPoints===================================================================
     //================================================================================================
 
-    @PutMapping("/changePassword")
+    @PostMapping("/changePassword")
     public ResponseEntity<String> changePassword(@RequestBody LoginRequest loginRequest){
         return ResponseEntity.ok(authService.changePassword(loginRequest));
     }
@@ -50,6 +50,16 @@ public class AuthController {
     @RequestMapping("/checkToken")
     public ResponseEntity<Object> checkToken(){
         return authService.checkToken();
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<String> updateUser(@RequestBody RegisterRequest registerRequest){
+        return authService.updateUser(registerRequest);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteUser(@RequestBody LoginRequest loginRequest){
+        return authService.deleteUser(loginRequest);
     }
 
 

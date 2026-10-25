@@ -7,6 +7,7 @@ import com.example.UserService.entity.enums.TokenType;
 import com.example.UserService.model.*;
 import com.example.UserService.repository.JwtRepository;
 import com.example.UserService.repository.UserRepository;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -122,6 +123,24 @@ public class AuthService {
     public ResponseEntity<Object> checkToken(){
         return ResponseEntity.ok().build();
     }
+
+    public ResponseEntity<String> updateUser(RegisterRequest registerRequest){
+        User user = userRepository.findUserByEmail(registerRequest.getEmail());
+        user.setPassword(registerRequest.getPassword());
+        user.setRole(registerRequest.getRole());
+        userRepository.save(user);
+
+        return ResponseEntity.ok("User updated successfully");
+    }
+
+    public ResponseEntity<String> deleteUser(LoginRequest loginRequest){
+        User user = userRepository.findUserByEmail(loginRequest.getEmail());
+        userRepository.deleteById(user.getId());
+
+        return ResponseEntity.ok("User deleted successfully");
+    }
+
+
 
 
 
