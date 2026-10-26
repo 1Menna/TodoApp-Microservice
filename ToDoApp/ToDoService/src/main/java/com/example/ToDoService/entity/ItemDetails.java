@@ -1,11 +1,13 @@
 package com.example.ToDoService.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Getter
 @Setter
 @Entity
@@ -29,5 +31,10 @@ public class ItemDetails {
 
     @OneToOne(mappedBy = "itemDetails", fetch = FetchType.EAGER)
     Item item;
+
+    @PrePersist
+    private void onCreation(){
+        this.created_at = new Date(System.currentTimeMillis());
+    }
 }
 
