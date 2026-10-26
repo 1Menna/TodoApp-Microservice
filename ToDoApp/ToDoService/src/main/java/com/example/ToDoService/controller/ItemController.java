@@ -1,7 +1,6 @@
-package com.example.ToDoService.config;
+package com.example.ToDoService.controller;
 
 import com.example.ToDoService.model.ItemDto;
-import com.example.ToDoService.repository.ItemRepository;
 import com.example.ToDoService.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
