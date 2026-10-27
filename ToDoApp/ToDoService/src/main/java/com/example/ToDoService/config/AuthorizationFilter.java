@@ -10,6 +10,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.AuthorityUtils;
+
 public class AuthorizationFilter extends OncePerRequestFilter {
 
     final private RestClient restClient = RestClient.builder()
@@ -32,6 +36,17 @@ public class AuthorizationFilter extends OncePerRequestFilter {
                 .toEntity(Object.class);
 
         if(validationResponse.getStatusCode().is2xxSuccessful()){
+
+            UsernamePasswordAuthenticationToken authentication =
+                    new UsernamePasswordAuthenticationToken(
+                            "token-validated",
+                            null,
+                            AuthorityUtils.NO_AUTHORITIES
+                    );
+
+            SecurityContextHolder.getContext()
+                    .setAuthentication(authentication);
+
             filterChain.doFilter(request,response);
             return;
         }
