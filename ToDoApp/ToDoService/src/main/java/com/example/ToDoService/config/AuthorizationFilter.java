@@ -19,7 +19,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 public class AuthorizationFilter extends OncePerRequestFilter {
 
     final private RestClient restClient = RestClient.builder()
-            .baseUrl("http://localhost/8081/auth")
+            .baseUrl("http://localhost:8081/auth")
             .build();
 
     @Override
@@ -31,7 +31,7 @@ public class AuthorizationFilter extends OncePerRequestFilter {
         }
 
 
-        ResponseEntity<Object> validationResponse = restClient.post()
+        ResponseEntity<Object> validationResponse = restClient.get()
                 .uri("/checkToken")
                 .header("Authorization",AuthHeader)
                 .retrieve()
