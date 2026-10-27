@@ -19,7 +19,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 public class AuthorizationFilter extends OncePerRequestFilter {
 
     final private RestClient restClient = RestClient.builder()
-            .baseUrl("http://localhose/8081/auth")
+            .baseUrl("http://localhost/8081/auth")
             .build();
 
     @Override
