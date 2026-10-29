@@ -6,17 +6,17 @@ A **microservices-based** backend for a Todo application, built with **Spring Bo
 
 ## Overview
 
-ToDa is split into two independently deployable microservices that talk to each other over REST:
+ToDo is split into two independently deployable microservices that talk to each other over REST:
 
 - **Todo Service** — lets a user add, update, delete, and search their todo items.
 - **User Service** — handles registration, login, JWT-based authentication/authorization, and password reset via email OTP.
 
 Every request to the Todo Service is validated by calling `/checkToken` on the User Service, so the two services stay decoupled while still enforcing auth centrally.
 
-```
-Client → Todo Service ──validates token──▶ User Service
-Client → User Service (login, register, password reset, user management)
-```
+
+<img width="800" height="370" alt="image" src="https://github.com/user-attachments/assets/30d7a641-43af-4aa1-a9dd-f89bb2f03eba" />
+ 
+
 
 ## Features
 
