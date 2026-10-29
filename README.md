@@ -13,9 +13,7 @@ ToDo is split into two independently deployable microservices that talk to each 
 
 Every request to the Todo Service is validated by calling `/checkToken` on the User Service, so the two services stay decoupled while still enforcing auth centrally.
 
-
-<img width="800" height="370" alt="image" src="https://github.com/user-attachments/assets/ad2a4408-2950-4634-8e22-b382b11521a6" />
-
+<img width="800" height="370" alt="image" src="https://github.com/user-attachments/assets/aad5ca93-27c6-479b-a52e-de3d58acf1b0" />
 
 
 ## Features
