@@ -18,18 +18,18 @@ public class ItemController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Object> updateItem(@RequestBody ItemDto item, @PathVariable int id){
         itemService.update(id,item);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/search/{id}")
+    @GetMapping("/search/{id}")
     public ResponseEntity<Object> searchItem(@PathVariable int id){
         return ResponseEntity.ok(itemService.search(id));
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> deleteItem(@PathVariable int id){
         itemService.delete(id);
         return ResponseEntity.ok().build();
